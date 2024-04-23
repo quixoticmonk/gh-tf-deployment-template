@@ -1,4 +1,4 @@
-name: Dev deployment
+name: Test/Prod deployment
 on:
     workflow_dispatch:
         inputs:
@@ -14,7 +14,7 @@ on:
                 description: Select the step to run
 
 jobs:
-    glue_dev_deploy:
+    glue_${{github.event.inputs.environment}}_deploy:
         uses: ./.github/workflows/deployment_template.yaml
         with:
             environment: ${{github.event.inputs.environment}}
