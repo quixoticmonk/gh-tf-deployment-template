@@ -38,7 +38,7 @@ jobs:
               with:
                 terraform_version: ${{env.tf_version}}         
             - name: terraform init
-              working-directory: ./infra
+              working-directory: ./
               run: |
                 terraform init
                 # terraform test
