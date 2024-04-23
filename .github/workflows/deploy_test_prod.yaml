@@ -14,7 +14,7 @@ on:
                 description: Select the step to run
 
 jobs:
-    glue_${{github.event.inputs.environment}}_deploy:
+    deploy:
         uses: ./.github/workflows/deployment_template.yaml
         with:
             environment: ${{github.event.inputs.environment}}
