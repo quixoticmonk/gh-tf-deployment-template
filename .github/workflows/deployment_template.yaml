@@ -42,7 +42,7 @@ jobs:
               run: |
                 terraform init
                 # terraform test
-            - name: Terraform Validate
+            - name: Terraform validate
               working-directory: ./
               id: validate
               run: terraform validate -no-color
@@ -50,12 +50,12 @@ jobs:
               working-directory: ./
               run: terraform plan -no-color
             - name: terraform apply
-              if: ${{inputs.step_name}} == "apply"
+              if: ${{inputs.step_name == 'apply'}}
               working-directory: ./
               run: |
                 terraform apply --auto-approve
             - name: terraform destroy
-              if: ${{inputs.step_name}} == "destroy"
+              if: ${{inputs.step_name == 'destroy'}}
               working-directory: ./
               run: |
                 terraform destroy --auto-approve
