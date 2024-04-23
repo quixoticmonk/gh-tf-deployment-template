@@ -10,7 +10,7 @@ on:
 
 jobs:
     glue_dev_deploy:
-        uses: ./.github/workflows/deployment_template.yaml@main
+        uses: ./.github/workflows/deployment_template.yaml
         with:
             environment: dev
             step_name: apply
