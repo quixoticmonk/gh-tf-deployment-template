@@ -10,7 +10,7 @@ on:
     workflow_dispatch:
 
 jobs:
-    glue_dev_deploy:
+    deploy:
         uses: ./.github/workflows/deployment_template.yaml
         with:
             environment: dev
