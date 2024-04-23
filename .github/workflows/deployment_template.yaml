@@ -1,0 +1,58 @@
+
+name: Deploy to AWS
+
+on:
+    workflow_call:
+        inputs:
+            environment:
+                required: true
+                type: string
+            tag:
+                type: string
+            tf_version:
+                required: true
+                type: string
+                default: "v1.8.0-alpha20240228"
+            step_name:
+                required: true
+                type: string
+                default: plan
+        secrets:
+            git_role:
+                required: true
+
+jobs:
+
+    deploy:
+        permissions:
+          id-token: write
+          contents: read
+        runs-on: ubuntu-latest
+        steps:
+            - name: checkout
+              uses: actions/checkout@v4
+            - name: Configure AWS Credentials
+              uses: aws-actions/configure-aws-credentials@v4
+              with:
+                role-to-assume: ${{secrets.git_role}}
+                aws-region: "us-east-1"
+            - uses: hashicorp/setup-terraform@v3
+              with:
+                terraform_version: ${{env.tf_version}}         
+            - name: terraform init
+              working-directory: ./infra
+              run: |
+                terraform init
+                # terraform test
+            - name: Terraform Validate
+              working-directory: ./
+              id: validate
+              run: terraform validate -no-color
+            - name: terraform plan
+              working-directory: ./
+              run: terraform plan -no-color
+            - name: terraform apply
+              if: ${{inputs.step_name}} == "apply"
+              working-directory: ./
+              run: |
+                terraform apply --auto-approve

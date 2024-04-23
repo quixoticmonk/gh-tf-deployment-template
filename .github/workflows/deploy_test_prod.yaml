@@ -1,0 +1,23 @@
+name: Dev deployment
+on:
+    workflow_dispatch:
+        inputs:
+            environment:
+                type: choice
+                required: true
+                options: ["test","prod"]
+                description: Select the AWS environment to deploy to
+            terraform_action:
+                type: choice
+                required: true
+                options: ["plan","apply"]
+                description: Select the step to run
+
+jobs:
+    glue_dev_deploy:
+        uses: ./.github/workflows/deployment_template.yaml
+        with:
+            environment: ${{github.event.inputs.environment}}
+            step_name: ${{github.event.inputs.terraform_action}}
+        secrets:
+            git_role: ${{secrets.IAM_ROLE}}
