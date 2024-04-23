@@ -17,6 +17,7 @@ The workflow is designed as :
     - For the final apply stage, the `apply` selection for step would be required.
     - The branch selection is available as per normal workflow_dispatch options. 
     - The branches from a which a deployment can occur to a target environment ( mirrored by the GitHub environment) can be set with rules on the environment.
+    
 ![](./images/workflow_dispatch.jpg)
 
 - A `destroy` workflow is also added which allows you to clean up your resources from a target AWS account using the additional input of environment along with step_name set to `destroy`
