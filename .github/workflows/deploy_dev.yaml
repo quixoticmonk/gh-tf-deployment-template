@@ -4,11 +4,13 @@ on:
     pull_request:
         paths-ignore:
             - README.md
+            - "images/**"
         branches:
             main
     push:
         paths-ignore:
             - README.md
+            - "images/**"
         branches:
             main
     workflow_dispatch:
