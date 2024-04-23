@@ -54,3 +54,8 @@ jobs:
               working-directory: ./
               run: |
                 terraform apply --auto-approve
+            - name: terraform destroy
+              if: ${{inputs.step_name}} == "destroy"
+              working-directory: ./
+              run: |
+                terraform destroy --auto-approve

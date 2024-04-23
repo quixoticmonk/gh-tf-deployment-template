@@ -1,0 +1,17 @@
+
+name: Destroy resources
+on:
+    workflow_dispatch:
+        inputs:
+            environment:
+                type: choice
+                required: true
+                options: ["dev","test","prod"]
+                description: Select the AWS environment to destroy resources in
+jobs:
+    glue_dev_deploy:
+        uses: ./.github/workflows/deployment_template.yaml
+        with:
+            step_name: destroy
+        secrets:
+            git_role: ${{ secrets.IAM_ROLE }}
