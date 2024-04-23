@@ -10,11 +10,9 @@ on:
             tag:
                 type: string
             tf_version:
-                required: true
                 type: string
                 default: "v1.8.0-alpha20240228"
             step_name:
-                required: true
                 type: string
                 default: plan
         secrets:
