@@ -1,4 +1,4 @@
-
+---
 name: Deploy to AWS
 
 on:
@@ -18,13 +18,13 @@ on:
         secrets:
             git_role:
                 required: true
-permissions:
-  id-token: write
-  contents: read
 
 jobs:
     deploy:
-
+        permissions:
+          id-token: write
+          contents: read
+        environment: ${{inputs.environment}}
         runs-on: ubuntu-latest
         steps:
             - name: checkout
