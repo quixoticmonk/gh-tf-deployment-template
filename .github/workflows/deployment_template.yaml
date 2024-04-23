@@ -31,8 +31,8 @@ jobs:
             - name: Configure AWS Credentials
               uses: aws-actions/configure-aws-credentials@v4
               with:
-                role-to-assume: ${{secrets.git_role}}
-                aws-region: "us-east-1"
+                role-to-assume: ${{ secrets.git_role }}
+                aws-region: us-east-1
             - uses: hashicorp/setup-terraform@v3
               with:
                 terraform_version: ${{env.tf_version}}         
