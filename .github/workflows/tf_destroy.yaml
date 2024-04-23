@@ -12,6 +12,7 @@ jobs:
     destroy:
         uses: ./.github/workflows/deployment_template.yaml
         with:
+            environment: ${{github.event.inputs.environment}}
             step_name: destroy
         secrets:
             git_role: ${{ secrets.IAM_ROLE }}
