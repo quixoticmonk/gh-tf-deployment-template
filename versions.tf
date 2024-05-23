@@ -1,10 +1,10 @@
 terraform {
-  backend "s3" {
-    bucket         = "manuchandrasekhar-tfstate"
-    key            = "test_state"
-    region         = "us-east-1"
-    dynamodb_table = "tfstate"
-  }
+  #backend "s3" {
+   # bucket         = "manuchandrasekhar-tfstate"
+    #key            = "test_state"
+    #region         = "us-east-1"
+    #dynamodb_table = "tfstate"
+  #}
   required_providers {
     aws = {
       source  = "hashicorp/aws"
