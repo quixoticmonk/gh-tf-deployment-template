@@ -40,6 +40,14 @@ jobs:
             - name: terraform init
               working-directory: ./
               run: |
+                mkdir -p ash
+                git clone https://github.com/awslabs/automated-security-helper "./ash"
+                export PATH="${PATH}:./ash"
+                ash --version                
+            - name: terraform init
+              working-directory: ./
+              run: |
+              
                 terraform init
                 # terraform test
             - name: Terraform validate
