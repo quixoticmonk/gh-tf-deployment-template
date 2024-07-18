@@ -37,13 +37,17 @@ jobs:
             - uses: hashicorp/setup-terraform@v3
               with:
                 terraform_version: ${{env.tf_version}}         
-            - name: terraform init
+            - name: Setup ash
               working-directory: ./
               run: |
                 mkdir -p ash
                 git clone https://github.com/awslabs/automated-security-helper "./ash"
                 export PATH="${PATH}:./ash"
-                ash --version                
+                ash --version       
+            - name: Run ash
+              working-directory: ./
+              run: |
+                ash --source-dir ./.github/workflows                
             - name: terraform init
               working-directory: ./
               run: |
